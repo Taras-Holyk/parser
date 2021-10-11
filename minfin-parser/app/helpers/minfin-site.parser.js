@@ -26,8 +26,8 @@ async function getExchangeRates(params) {
 function generateUrlForParsing(params) {
   let url = 'https://minfin.com.ua/ua/currency/';
 
-  if (params.has('date')) {
-    url += params.get('date');
+  if (params.date) {
+    url += params.date;
   }
 
   return url;

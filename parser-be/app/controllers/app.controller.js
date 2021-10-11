@@ -1,9 +1,9 @@
-const request = require('request-promise');
 const ejs = require('ejs');
 const fs = require('fs');
 const pdf = require('html-pdf');
 const os = require('os');
 
+const rabbitmqService = require('../services/rabbitmq');
 const dateHelper = require('../helpers/date.helper');
 const parserLogRepository = require('../repositories/parser-log.repository');
 
@@ -18,16 +18,8 @@ async function index(req, res) {
       });
   }
 
-  let url = process.env.MIN_FIN_PARSER_URL;
-  if (req.query.date) {
-    url += '?date=' + requestedDate;
-  }
-
   try {
-    const minFinExchangeRates = await request({
-      uri: url,
-      json: true
-    });
+    const minFinExchangeRates = await rabbitmqService.sendMessage(JSON.stringify({ requestedDate }));
 
     await parserLogRepository.store({
       user_id: req.user.id,

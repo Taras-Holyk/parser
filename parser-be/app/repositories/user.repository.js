@@ -1,11 +1,12 @@
-const db = require('../config/db');
+const dbMaster = require('../config/db-master');
+const dbSlave = require('../config/db-slave');
 
 function getByEmail(email) {
-  return db('users').where('email', email).first();
+  return dbSlave('users').where('email', email).first();
 }
 
 function createUser(params) {
-  return db('users').insert(params);
+  return dbMaster('users').insert(params);
 }
 
 module.exports = {

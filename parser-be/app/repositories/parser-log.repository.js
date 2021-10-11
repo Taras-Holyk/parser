@@ -1,11 +1,12 @@
-const db = require('../config/db');
+const dbMaster = require('../config/db-master');
+const dbSlave = require('../config/db-slave');
 
 function getRecentByUserAndDate(userId, date) {
   const startDate = new Date();
   let endDate = new Date(startDate);
   startDate.setMinutes(startDate.getMinutes() - 15);
 
-  return db('parser_log')
+  return dbSlave('parser_log')
     .where({
       user_id: userId,
       date: date,
@@ -17,7 +18,7 @@ function getRecentByUserAndDate(userId, date) {
 }
 
 function getLastByUser(userId) {
-  return db('parser_log')
+  return dbSlave('parser_log')
     .where({
       user_id: userId,
       origin: 'minfin'
@@ -27,7 +28,7 @@ function getLastByUser(userId) {
 }
 
 function store(params) {
-  return db('parser_log').insert(params);
+  return dbMaster('parser_log').insert(params);
 }
 
 module.exports = {

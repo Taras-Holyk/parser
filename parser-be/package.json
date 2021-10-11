@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/Taras-Holyk/exhange-rate-parser#readme",
   "dependencies": {
+    "amqplib": "^0.8.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -46,6 +47,7 @@
     "pg": "^8.7.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
+    "uuid": "^8.3.2",
     "validator": "^13.6.0"
   },
   "devDependencies": {

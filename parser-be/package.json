@@ -1,0 +1,65 @@
+{
+  "name": "exchange-rate-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "dev": "nodemon app/index.js",
+    "test": "NODE_ENV=test mocha ./tests/*.js --timeout=10000 --exit",
+    "test:coverage": "nyc npm test",
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "nyc": {
+    "include": [
+      "**/*.js",
+      "./*.js"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/tests/**",
+      "**/coverage/**",
+      "**/index.js"
+    ],
+    "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taras-Holyk/exhange-rate-parser.git"
+  },
+  "author": "Taras Holyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taras-Holyk/exhange-rate-parser/issues"
+  },
+  "homepage": "https://github.com/Taras-Holyk/exhange-rate-parser#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "html-pdf": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.11",
+    "pg": "^8.7.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "faker": "^4.1.0",
+    "mocha": "^6.0.2",
+    "nodemon": "^2.0.13",
+    "nyc": "^13.3.0"
+  }
+}

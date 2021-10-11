@@ -1,0 +1,7 @@
+.env
+
+.idea/
+node_modules/
+database-data/
+database-master-data/
+database-slave-data

@@ -1,0 +1,62 @@
+version: "3"
+services:
+  web:
+    build: parser-fe
+    volumes:
+      - ./parser-fe:/app
+      - /app/node_modules
+    restart: on-failure
+  backend:
+    build: parser-be
+    volumes:
+      - ./parser-be:/app
+      - /app/node_modules
+    ports:
+      - "3002:3002"
+    depends_on:
+      - postgres_master
+      - postgres_slave
+      - rabbitmq
+    restart: on-failure
+  minfin:
+    build: minfin-parser
+    volumes:
+      - ./minfin-parser:/app
+      - /app/node_modules
+    ports:
+      - "3001:3001"
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+  nginx:
+    depends_on:
+      - web
+    restart: on-failure
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+  postgres_master:
+    build:
+      dockerfile: Dockerfile
+      context: ./postgres/master
+    env_file:
+      - ./postgres/.env
+    volumes:
+      - ./database-master-data:/var/lib/postgresql/data/
+    restart: on-failure
+  postgres_slave:
+    build:
+      dockerfile: Dockerfile
+      context: ./postgres/slave
+    env_file:
+      - ./postgres/.env
+    volumes:
+      - ./database-slave-data:/var/lib/postgresql/data/
+    restart: on-failure
+  rabbitmq:
+    image: "rabbitmq"
+    env_file:
+      - rabbitmq/.env
+    restart: on-failure

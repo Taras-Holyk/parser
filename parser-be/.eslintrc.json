@@ -1,0 +1,23 @@
+{
+    "extends": "standard",
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "rules": {
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "semi": [2, "always"],
+        "no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "should|expect"
+            }
+        ],
+        "handle-callback-err": ["error", "never"]
+    }
+}

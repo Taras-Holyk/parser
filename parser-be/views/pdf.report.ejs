@@ -1,0 +1,36 @@
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid #000;
+        text-align: center;
+        padding: 5px;
+    }
+</style>
+<html>
+    <body>
+        <table>
+            <tr>
+                <td>КУРС ДO ГРИВНІ</td>
+                <td>
+                    Готівковий ринок<br/>
+                    <small>Купівля / Продаж</small>
+                </td>
+                <td>НБУ</td>
+                <td>
+                    Чорний ринок<br/>
+                    <small>Купують / Продають</small>
+                </td>
+            </tr>
+            <% exchangeRates.forEach((currency) => { %>
+                <tr>
+                    <td><%= currency.title %></td>
+                    <td><%= currency.cash.purchase %> / <%= currency.cash.selling %></td>
+                    <td><%= currency.nbu%></td>
+                    <td><%= currency.black.purchase %> / <%= currency.black.selling %></td>
+                </tr>
+            <% }) %>
+        </table>
+    </body>
+</html>

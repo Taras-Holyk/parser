@@ -1,0 +1,26 @@
+.form {
+  &__label {
+    display: block;
+    margin: 7px 0 3px;
+  }
+
+  &__input {
+    width: calc(100% - 14px);
+    padding: 5px;
+  }
+
+  &__submit-button {
+    margin-top: 15px;
+    border-radius: 3px;
+    background-color: darkcyan;
+    color: white;
+    border: 0;
+    padding: 7px 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &__buttons {
+    text-align: right;
+  }
+}
